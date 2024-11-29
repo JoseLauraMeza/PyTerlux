@@ -34,6 +34,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="views/css/app.css">
 </head>
 <body>
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.php"><img src="views/img/logo.jpg" width="100"></a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.php">Inicio</a></li>
+            <?php if (isset($_SESSION['usuario_id'])): ?>
+                <li><a href="logout.php" class="btn-logout">Cerrar sesión</a></li>
+            <?php else: ?>
+                <li><a href="login.php" class="btn-login">Login</a></li>
+                <li><a href="registro.php" class="btn-register">Registrar</a></li>
+            <?php endif; ?>
+        </ul>
+    </nav>
+
+    <!-- Sección Hero -->
+    <div class="hero">
+        <h1>Encuentra el Trabajo de tus Sueños</h1>
+        <p>Explora las mejores ofertas de trabajo, regístrate y empieza a postularte.</p>
+    </div>
     <!-- Contenido del formulario -->
     <div class="form-section">
         <h2>Formulario de Registro</h2>
