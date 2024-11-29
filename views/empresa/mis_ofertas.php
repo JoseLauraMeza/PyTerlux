@@ -25,40 +25,56 @@ $ofertas = $ofertaControlador->obtenerOfertasPorEmpresa($_SESSION['usuario_id'])
 </head>
 <body>
     <nav class="navbar">
-        <a href="empresa_dashboard.php">Dashboard</a>
+        <div class="logo">
+            <a href="../index.php"><img src="../img/logo.jpg" width="100"></a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="empresa_dashboard.php">Home</a></li>
+            <li><a href="crear_oferta.php">Crear Oferta</a></li>
+            <li><a href="mis_ofertas.php">Mis Ofertas</a></li>
+            <li><a href="../logout.php" class="btn-logout">Cerrar sesión</a></li>
+        </ul>
     </nav>
 
-    <div class="dashboard-section">
+    <!-- Sección Hero -->
+    <div class="hero">
         <h1>Mis Ofertas</h1>
+    </div>
+
+    <div class="dashboard-section">
 
         <?php if (isset($_GET['mensaje'])): ?>
             <p class="success"><?php echo htmlspecialchars($_GET['mensaje']); ?></p>
         <?php endif; ?>
 
         <table>
-            <tr>
-                <th>Título</th>
-                <th>Ubicación</th>
-                <th>Salario</th>
-                <th>Acciones</th>
-            </tr>
-            <?php if (!empty($ofertas)): ?>
-                <?php foreach ($ofertas as $oferta): ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($oferta['titulo']); ?></td>
-                        <td><?php echo htmlspecialchars($oferta['ubicacion']); ?></td>
-                        <td><?php echo htmlspecialchars($oferta['salario']); ?></td>
-                        <td>
-                            <a href="editar_oferta.php?id=<?php echo $oferta['oferta_id']; ?>">Editar</a>
-                            <a href="eliminar_oferta.php?id=<?php echo $oferta['oferta_id']; ?>" onclick="return confirm('¿Estás seguro de que deseas eliminar esta oferta?')">Eliminar</a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php else: ?>
+            <thead>
                 <tr>
-                    <td colspan="4">No tienes ofertas publicadas.</td>
+                    <th>Título</th>
+                    <th>Ubicación</th>
+                    <th>Salario</th>
+                    <th>Acciones</th>
                 </tr>
-            <?php endif; ?>
+            </thead>
+            <tbody>
+                <?php if (!empty($ofertas)): ?>
+                    <?php foreach ($ofertas as $oferta): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($oferta['titulo']); ?></td>
+                            <td><?php echo htmlspecialchars($oferta['ubicacion']); ?></td>
+                            <td><?php echo htmlspecialchars($oferta['salario']); ?></td>
+                            <td>
+                                <a href="editar_oferta.php?id=<?php echo $oferta['oferta_id']; ?>">Editar</a>
+                                <a href="eliminar_oferta.php?id=<?php echo $oferta['oferta_id']; ?>" onclick="return confirm('¿Estás seguro de que deseas eliminar esta oferta?')">Eliminar</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="4">No tienes ofertas publicadas.</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
         </table>
     </div>
 </body>

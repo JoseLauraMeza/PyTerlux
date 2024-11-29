@@ -17,7 +17,9 @@ class OfertaControlador
             return "Por favor, completa todos los campos.";
         }
 
+        // Llamar al controlador para crear la oferta
         $resultado = $this->model->crearOferta($empresa_id, $titulo, $descripcion, $requisitos, $ubicacion, $salario, $categoria_id);
+
 
         if ($resultado) {
             return "Oferta creada exitosamente.";

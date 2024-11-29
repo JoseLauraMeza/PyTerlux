@@ -57,7 +57,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <nav class="navbar">
-        <a href="empresa_dashboard.php">Dashboard</a>
+        <div class="logo">
+            <a href="../index.php"><img src="../img/logo.jpg" width="100"></a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="empresa_dashboard.php">Home</a></li>
+            <li><a href="crear_oferta.php">Crear Oferta</a></li>
+            <li><a href="mis_ofertas.php">Mis Ofertas</a></li>
+            <li><a href="../logout.php" class="btn-logout">Cerrar sesión</a></li>
+        </ul>
     </nav>
 
     <div class="form-section">
@@ -67,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <p class="error"><?php echo $error; ?></p>
         <?php endif; ?>
 
-        <form action="editar_oferta.php?id=<?php echo $oferta_id; ?>" method="POST">
+        <form action="editar_oferta.php?id=<?php echo $oferta_id; ?>" method="POST" class="form-container">
             <label for="titulo">Título</label>
             <input type="text" id="titulo" name="titulo" value="<?php echo htmlspecialchars($oferta['titulo']); ?>" required>
 

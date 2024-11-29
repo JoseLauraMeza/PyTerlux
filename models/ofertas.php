@@ -10,15 +10,33 @@ class Ofertas
         $this->conexion = Conexion::getConexion();  // Conexión inicializada correctamente
     }
 
-    // Crear una nueva oferta
-    public function crearOferta($empresa_id, $titulo, $descripcion, $requisitos, $ubicacion, $salario)
-    {
-        $sql = "INSERT INTO Ofertas (empresa_id, titulo, descripcion, requisitos, ubicacion, salario) 
-                VALUES (?, ?, ?, ?, ?, ?)";
-        $stmt = $this->conexion->prepare($sql);
-        $stmt->bind_param("issssd", $empresa_id, $titulo, $descripcion, $requisitos, $ubicacion, $salario);
-        return $stmt->execute();
+    public function crearOferta($empresa_id, $titulo, $descripcion, $requisitos, $ubicacion, $salario, $categoria_id)
+{
+    // Insertar la oferta en la tabla Ofertas
+    $sql = "INSERT INTO Ofertas (empresa_id, titulo, descripcion, requisitos, ubicacion, salario) 
+            VALUES (?, ?, ?, ?, ?, ?)";
+    $stmt = $this->conexion->prepare($sql);
+    $stmt->bind_param("issssd", $empresa_id, $titulo, $descripcion, $requisitos, $ubicacion, $salario);
+    $resultado = $stmt->execute();
+
+    // Verificar si la oferta se creó correctamente
+    if ($resultado) {
+        // Obtener el ID de la oferta recién creada
+        $oferta_id = $this->conexion->insert_id;
+
+        // Ahora insertamos el registro en la tabla OfertaCategoria
+        $sql_categoria = "INSERT INTO OfertaCategoria (oferta_id, categoria_id) 
+                          VALUES (?, ?)";
+        $stmt_categoria = $this->conexion->prepare($sql_categoria);
+        $stmt_categoria->bind_param("ii", $oferta_id, $categoria_id);
+        
+        // Ejecutar la inserción en la tabla de relación
+        return $stmt_categoria->execute();
     }
+
+    return false;  // Si hubo un error al insertar la oferta
+}
+
 
     public function obtenerCategorias()
     {

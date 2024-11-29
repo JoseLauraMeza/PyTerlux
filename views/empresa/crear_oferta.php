@@ -57,7 +57,7 @@ $categorias = $ofertaControlador->obtenerCategorias();
             <a href="../index.php"><img src="../img/logo.jpg" width="100"></a>
         </div>
         <ul class="nav-links">
-            <li><a href="empresa_dashboard.php">Dashboard</a></li>
+            <li><a href="empresa_dashboard.php">Home</a></li>
             <li><a href="mis_ofertas.php">Mis Ofertas</a></li>
             <li><a href="../../logout.php" class="btn-logout">Cerrar sesión</a></li>
         </ul>

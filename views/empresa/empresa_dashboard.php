@@ -27,12 +27,18 @@ $ofertas = $ofertaControlador->obtenerOfertasPorEmpresa($_SESSION['usuario_id'])
             <a href="../index.php"><img src="../img/logo.jpg" width="100"></a>
         </div>
         <ul class="nav-links">
-            <li><a href="empresa_dashboard.php">Dashboard</a></li>
+            <li><a href="empresa_dashboard.php">Home</a></li>
             <li><a href="crear_oferta.php">Crear Oferta</a></li>
             <li><a href="mis_ofertas.php">Mis Ofertas</a></li>
             <li><a href="../logout.php" class="btn-logout">Cerrar sesión</a></li>
         </ul>
     </nav>
+
+    <!-- Sección Hero -->
+    <div class="hero">
+        <h1>Encuentra el Trabajo de tus Sueños</h1>
+        <p>Explora las mejores ofertas de trabajo, regístrate y empieza a postularte.</p>
+    </div>
 
     <!-- Mostrar vacantes -->
     <div class="vacantes">
