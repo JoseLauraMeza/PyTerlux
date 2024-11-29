@@ -84,7 +84,6 @@ class Ofertas
         return $stmt->execute();
     }
 
-
     public function obtenerOfertasActivas($limite)
     {
         $sql = "SELECT * FROM Ofertas WHERE estado = 'activa' ORDER BY fecha_publicacion DESC LIMIT ?";
@@ -93,6 +92,17 @@ class Ofertas
         $stmt->execute();
         $resultado = $stmt->get_result();
         return $resultado->fetch_all(MYSQLI_ASSOC);
+    }
+
+    // Método para buscar ofertas por término
+    public function buscarOfertas($query)
+    {
+        $query = "%$query%";
+        $sql = "SELECT * FROM Ofertas WHERE titulo LIKE ? OR descripcion LIKE ?";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bind_param("ss", $query, $query);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
     
 }

@@ -28,6 +28,12 @@ class OfertaControlador
         }
     }
 
+    // Método para buscar ofertas por un término específico
+    public function buscarOfertas($query)
+    {
+        return $this->model->buscarOfertas($query);
+    }
+
     // Método para obtener todas las ofertas de una empresa
     public function obtenerOfertasPorEmpresa($empresa_id)
     {
