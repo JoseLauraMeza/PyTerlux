@@ -10,6 +10,19 @@ class UsuarioModel
         $this->conexion = Conexion::getConexion();
     }
 
+    public function obtenerUsuarioPorEmail($email)
+    {
+        $conexion = Conexion::getConexion();
+        $query = $conexion->prepare("SELECT * FROM Usuarios WHERE email = ?");
+        $query->bind_param("s", $email);
+        $query->execute();
+        $resultado = $query->get_result();
+
+        if ($resultado->num_rows > 0) {
+            return $resultado->fetch_assoc();
+        }
+        return null;
+    }
     public function insertar($nombre, $email, $contrasena, $tipo_usuario)
     {
         $sql = "INSERT INTO Usuarios (nombre, email, contrasena, tipo_usuario) VALUES (?, ?, ?, ?)";
@@ -33,5 +46,6 @@ class UsuarioModel
         $result = $stmt->get_result();
         return $result->fetch_assoc();
     }
+    
 }
 ?>

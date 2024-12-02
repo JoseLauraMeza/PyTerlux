@@ -32,9 +32,10 @@ if (isset($_GET['query']) && !empty($_GET['query'])) {
         <ul class="nav-links">
             <li><a href="index.php">Inicio</a></li>
             <?php if (isset($_SESSION['usuario_id'])): ?>
+                <li>Bienvenido, <?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?></li>
                 <li><a href="logout.php" class="btn-logout">Cerrar sesión</a></li>
             <?php else: ?>
-                <li><a href="login.php" class="btn-login">Login</a></li>
+                <li><a href="views/login.php" class="btn-login">Login</a></li>
                 <li><a href="registro.php" class="btn-register">Registrar</a></li>
             <?php endif; ?>
         </ul>
