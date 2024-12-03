@@ -2,10 +2,10 @@
 session_start();
 require_once '../models/Conexion.php';
 
-// if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'aspirante') {
-//     header("Location: login.php");
-//     exit;
-// }
+if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'aspirante') {
+    header("Location: login.php");
+    exit;
+}
 
 // Conexión a la base de datos
 $conexion = Conexion::getConexion();
